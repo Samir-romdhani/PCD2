@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFormationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFormationLabel_idF}" for="idF" />
+                    <h:inputText id="idF" value="#{formationController.selected.idF}" title="#{bundle.EditFormationTitle_idF}" required="true" requiredMessage="#{bundle.EditFormationRequiredMessage_idF}"/>
+                    <h:outputLabel value="#{bundle.EditFormationLabel_libelleF}" for="libelleF" />
+                    <h:inputText id="libelleF" value="#{formationController.selected.libelleF}" title="#{bundle.EditFormationTitle_libelleF}" />
+                    <h:outputLabel value="#{bundle.EditFormationLabel_rate}" for="rate" />
+                    <h:inputText id="rate" value="#{formationController.selected.rate}" title="#{bundle.EditFormationTitle_rate}" />
+                </h:panelGrid>
+                <h:commandLink action="#{formationController.update}" value="#{bundle.EditFormationSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFormationViewLink}"/>
+                <br />
+                <h:commandLink action="#{formationController.prepareList}" value="#{bundle.EditFormationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFormationIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
