@@ -6,77 +6,77 @@
 package tn.ensi.rh.entities;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author amal
+ * @author user
  */
 @Entity
-@Table(name = "formations", catalog = "rhdatabase", schema = "")
+@Table(name = "formations", catalog = "rh_testdb", schema = "")
 @NamedQueries({
-    @NamedQuery(name = "Formation.findAll", query = "SELECT f FROM Formation f"),
-    @NamedQuery(name = "Formation.findByIdF", query = "SELECT f FROM Formation f WHERE f.idF = :idF"),
-    @NamedQuery(name = "Formation.findByLibelleF", query = "SELECT f FROM Formation f WHERE f.libelleF = :libelleF"),
-    @NamedQuery(name = "Formation.findByRate", query = "SELECT f FROM Formation f WHERE f.rate = :rate")})
+    @NamedQuery(name = "Formation.findAll", query = "SELECT f FROM Formation f")
+    , @NamedQuery(name = "Formation.findByIdF", query = "SELECT f FROM Formation f WHERE f.formationPK.idF = :idF")
+    , @NamedQuery(name = "Formation.findByLibelle", query = "SELECT f FROM Formation f WHERE f.libelle = :libelle")
+    , @NamedQuery(name = "Formation.findByEtat", query = "SELECT f FROM Formation f WHERE f.etat = :etat")
+    , @NamedQuery(name = "Formation.findByUserId", query = "SELECT f FROM Formation f WHERE f.formationPK.userId = :userId")})
 public class Formation implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "IdF")
-    private String idF;
+    @EmbeddedId
+    protected FormationPK formationPK;
     @Size(max = 50)
-    @Column(name = "libelleF")
-    private String libelleF;
-    @Column(name = "Rate")
-    private Integer rate;
+    @Column(name = "Libelle")
+    private String libelle;
+    @Size(max = 20)
+    @Column(name = "Etat")
+    private String etat;
 
     public Formation() {
     }
 
-    public Formation(String idF) {
-        this.idF = idF;
+    public Formation(FormationPK formationPK) {
+        this.formationPK = formationPK;
     }
 
-    public String getIdF() {
-        return idF;
+    public Formation(int idF, int userId) {
+        this.formationPK = new FormationPK(idF, userId);
     }
 
-    public void setIdF(String idF) {
-        this.idF = idF;
+    public FormationPK getFormationPK() {
+        return formationPK;
     }
 
-    public String getLibelleF() {
-        return libelleF;
+    public void setFormationPK(FormationPK formationPK) {
+        this.formationPK = formationPK;
     }
 
-    public void setLibelleF(String libelleF) {
-        this.libelleF = libelleF;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public Integer getRate() {
-        return rate;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
-    public void setRate(Integer rate) {
-        this.rate = rate;
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idF != null ? idF.hashCode() : 0);
+        hash += (formationPK != null ? formationPK.hashCode() : 0);
         return hash;
     }
 
@@ -87,7 +87,7 @@ public class Formation implements Serializable {
             return false;
         }
         Formation other = (Formation) object;
-        if ((this.idF == null && other.idF != null) || (this.idF != null && !this.idF.equals(other.idF))) {
+        if ((this.formationPK == null && other.formationPK != null) || (this.formationPK != null && !this.formationPK.equals(other.formationPK))) {
             return false;
         }
         return true;
@@ -95,7 +95,7 @@ public class Formation implements Serializable {
 
     @Override
     public String toString() {
-        return "tn.ensi.rh.entities.Formation[ idF=" + idF + " ]";
+        return "tn.ensi.rh.entities.Formation[ formationPK=" + formationPK + " ]";
     }
     
 }

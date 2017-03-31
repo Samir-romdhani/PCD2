@@ -15,12 +15,14 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewFormationLabel_idF}"/>
-                    <h:outputText value="#{formationController.selected.idF}" title="#{bundle.ViewFormationTitle_idF}"/>
-                    <h:outputText value="#{bundle.ViewFormationLabel_libelleF}"/>
-                    <h:outputText value="#{formationController.selected.libelleF}" title="#{bundle.ViewFormationTitle_libelleF}"/>
-                    <h:outputText value="#{bundle.ViewFormationLabel_rate}"/>
-                    <h:outputText value="#{formationController.selected.rate}" title="#{bundle.ViewFormationTitle_rate}"/>
+                    <h:outputText value="#{bundle.ViewFormationLabel_formationPK_idF}"/>
+                    <h:outputText value="#{formationController.selected.formationPK.idF}" title="#{bundle.ViewFormationTitle_formationPK_idF}"/>
+                    <h:outputText value="#{bundle.ViewFormationLabel_formationPK_userId}"/>
+                    <h:outputText value="#{formationController.selected.formationPK.userId}" title="#{bundle.ViewFormationTitle_formationPK_userId}"/>
+                    <h:outputText value="#{bundle.ViewFormationLabel_libelle}"/>
+                    <h:outputText value="#{formationController.selected.libelle}" title="#{bundle.ViewFormationTitle_libelle}"/>
+                    <h:outputText value="#{bundle.ViewFormationLabel_etat}"/>
+                    <h:outputText value="#{formationController.selected.etat}" title="#{bundle.ViewFormationTitle_etat}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{formationController.destroyAndView}" value="#{bundle.ViewFormationDestroyLink}"/>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCompetenceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCompetenceLabel_competencePK_idF}" for="competencePK_idF" />
+                    <h:inputText id="competencePK_idF" value="#{competenceController.selected.competencePK.idF}" title="#{bundle.CreateCompetenceTitle_competencePK_idF}" required="true" requiredMessage="#{bundle.CreateCompetenceRequiredMessage_competencePK_idF}"/>
+                    <h:outputLabel value="#{bundle.CreateCompetenceLabel_competencePK_idC}" for="competencePK_idC" />
+                    <h:inputText id="competencePK_idC" value="#{competenceController.selected.competencePK.idC}" title="#{bundle.CreateCompetenceTitle_competencePK_idC}" required="true" requiredMessage="#{bundle.CreateCompetenceRequiredMessage_competencePK_idC}"/>
+                    <h:outputLabel value="#{bundle.CreateCompetenceLabel_competencePK_userId}" for="competencePK_userId" />
+                    <h:inputText id="competencePK_userId" value="#{competenceController.selected.competencePK.userId}" title="#{bundle.CreateCompetenceTitle_competencePK_userId}" required="true" requiredMessage="#{bundle.CreateCompetenceRequiredMessage_competencePK_userId}"/>
+                    <h:outputLabel value="#{bundle.CreateCompetenceLabel_descriptions}" for="descriptions" />
+                    <h:inputText id="descriptions" value="#{competenceController.selected.descriptions}" title="#{bundle.CreateCompetenceTitle_descriptions}" />
+                    <h:outputLabel value="#{bundle.CreateCompetenceLabel_note}" for="note" />
+                    <h:inputText id="note" value="#{competenceController.selected.note}" title="#{bundle.CreateCompetenceTitle_note}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{competenceController.create}" value="#{bundle.CreateCompetenceSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{competenceController.prepareList}" value="#{bundle.CreateCompetenceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCompetenceIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

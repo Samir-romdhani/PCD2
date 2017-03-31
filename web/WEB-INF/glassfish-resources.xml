@@ -21,4 +21,5 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java:app/rh_testdb" object-type="user" pool-name="mysql_rh_testdb_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/rh_testdb" object-type="user" pool-name="mysql_rh_testdb_rootPool"/>
 </resources>

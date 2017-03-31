@@ -1,9 +1,9 @@
 package tn.ensi.rh.beans;
 
-import tn.ensi.rh.entities.Formation;
+import tn.ensi.rh.entities.Competence;
 import tn.ensi.rh.beans.util.JsfUtil;
 import tn.ensi.rh.beans.util.PaginationHelper;
-import tn.ensi.rh.dao.FormationFacade;
+import tn.ensi.rh.dao.CompetenceFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -18,30 +18,30 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("formationController")
+@Named("competenceController")
 @SessionScoped
-public class FormationController implements Serializable {
+public class CompetenceController implements Serializable {
 
-    private Formation current;
+    private Competence current;
     private DataModel items = null;
     @EJB
-    private tn.ensi.rh.dao.FormationFacade ejbFacade;
+    private tn.ensi.rh.dao.CompetenceFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public FormationController() {
+    public CompetenceController() {
     }
 
-    public Formation getSelected() {
+    public Competence getSelected() {
         if (current == null) {
-            current = new Formation();
-            current.setFormationPK(new tn.ensi.rh.entities.FormationPK());
+            current = new Competence();
+            current.setCompetencePK(new tn.ensi.rh.entities.CompetencePK());
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private FormationFacade getFacade() {
+    private CompetenceFacade getFacade() {
         return ejbFacade;
     }
 
@@ -69,14 +69,14 @@ public class FormationController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Formation) getItems().getRowData();
+        current = (Competence) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Formation();
-        current.setFormationPK(new tn.ensi.rh.entities.FormationPK());
+        current = new Competence();
+        current.setCompetencePK(new tn.ensi.rh.entities.CompetencePK());
         selectedItemIndex = -1;
         return "Create";
     }
@@ -84,7 +84,7 @@ public class FormationController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FormationCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CompetenceCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -93,7 +93,7 @@ public class FormationController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Formation) getItems().getRowData();
+        current = (Competence) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -101,7 +101,7 @@ public class FormationController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FormationUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CompetenceUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -110,7 +110,7 @@ public class FormationController implements Serializable {
     }
 
     public String destroy() {
-        current = (Formation) getItems().getRowData();
+        current = (Competence) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -134,7 +134,7 @@ public class FormationController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FormationDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CompetenceDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -190,12 +190,12 @@ public class FormationController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Formation getFormation(tn.ensi.rh.entities.FormationPK id) {
+    public Competence getCompetence(tn.ensi.rh.entities.CompetencePK id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Formation.class)
-    public static class FormationControllerConverter implements Converter {
+    @FacesConverter(forClass = Competence.class)
+    public static class CompetenceControllerConverter implements Converter {
 
         private static final String SEPARATOR = "#";
         private static final String SEPARATOR_ESCAPED = "\\#";
@@ -205,25 +205,28 @@ public class FormationController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            FormationController controller = (FormationController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "formationController");
-            return controller.getFormation(getKey(value));
+            CompetenceController controller = (CompetenceController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "competenceController");
+            return controller.getCompetence(getKey(value));
         }
 
-        tn.ensi.rh.entities.FormationPK getKey(String value) {
-            tn.ensi.rh.entities.FormationPK key;
+        tn.ensi.rh.entities.CompetencePK getKey(String value) {
+            tn.ensi.rh.entities.CompetencePK key;
             String values[] = value.split(SEPARATOR_ESCAPED);
-            key = new tn.ensi.rh.entities.FormationPK();
-            key.setIdF(Integer.parseInt(values[0]));
+            key = new tn.ensi.rh.entities.CompetencePK();
+            key.setIdC(Integer.parseInt(values[0]));
             key.setUserId(Integer.parseInt(values[1]));
+            key.setIdF(Integer.parseInt(values[2]));
             return key;
         }
 
-        String getStringKey(tn.ensi.rh.entities.FormationPK value) {
+        String getStringKey(tn.ensi.rh.entities.CompetencePK value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value.getIdF());
+            sb.append(value.getIdC());
             sb.append(SEPARATOR);
             sb.append(value.getUserId());
+            sb.append(SEPARATOR);
+            sb.append(value.getIdF());
             return sb.toString();
         }
 
@@ -232,11 +235,11 @@ public class FormationController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Formation) {
-                Formation o = (Formation) object;
-                return getStringKey(o.getFormationPK());
+            if (object instanceof Competence) {
+                Competence o = (Competence) object;
+                return getStringKey(o.getCompetencePK());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Formation.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Competence.class.getName());
             }
         }
 

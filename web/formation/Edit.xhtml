@@ -15,12 +15,14 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditFormationLabel_idF}" for="idF" />
-                    <h:inputText id="idF" value="#{formationController.selected.idF}" title="#{bundle.EditFormationTitle_idF}" required="true" requiredMessage="#{bundle.EditFormationRequiredMessage_idF}"/>
-                    <h:outputLabel value="#{bundle.EditFormationLabel_libelleF}" for="libelleF" />
-                    <h:inputText id="libelleF" value="#{formationController.selected.libelleF}" title="#{bundle.EditFormationTitle_libelleF}" />
-                    <h:outputLabel value="#{bundle.EditFormationLabel_rate}" for="rate" />
-                    <h:inputText id="rate" value="#{formationController.selected.rate}" title="#{bundle.EditFormationTitle_rate}" />
+                    <h:outputLabel value="#{bundle.EditFormationLabel_formationPK_idF}" for="formationPK_idF" />
+                    <h:inputText id="formationPK_idF" value="#{formationController.selected.formationPK.idF}" title="#{bundle.EditFormationTitle_formationPK_idF}" required="true" requiredMessage="#{bundle.EditFormationRequiredMessage_formationPK_idF}"/>
+                    <h:outputLabel value="#{bundle.EditFormationLabel_formationPK_userId}" for="formationPK_userId" />
+                    <h:inputText id="formationPK_userId" value="#{formationController.selected.formationPK.userId}" title="#{bundle.EditFormationTitle_formationPK_userId}" required="true" requiredMessage="#{bundle.EditFormationRequiredMessage_formationPK_userId}"/>
+                    <h:outputLabel value="#{bundle.EditFormationLabel_libelle}" for="libelle" />
+                    <h:inputText id="libelle" value="#{formationController.selected.libelle}" title="#{bundle.EditFormationTitle_libelle}" />
+                    <h:outputLabel value="#{bundle.EditFormationLabel_etat}" for="etat" />
+                    <h:inputText id="etat" value="#{formationController.selected.etat}" title="#{bundle.EditFormationTitle_etat}" />
                 </h:panelGrid>
                 <h:commandLink action="#{formationController.update}" value="#{bundle.EditFormationSaveLink}"/>
                 <br />

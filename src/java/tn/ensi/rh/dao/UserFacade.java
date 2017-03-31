@@ -12,7 +12,7 @@ import tn.ensi.rh.entities.User;
 
 /**
  *
- * @author amal
+ * @author user
  */
 @Stateless
 public class UserFacade extends AbstractFacade<User> {

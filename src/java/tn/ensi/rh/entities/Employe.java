@@ -18,15 +18,15 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author amal
+ * @author user
  */
 @Entity
-@Table(name = "employes", catalog = "rhdatabase", schema = "")
+@Table(name = "employes", catalog = "rh_testdb", schema = "")
 @NamedQueries({
-    @NamedQuery(name = "Employe.findAll", query = "SELECT e FROM Employe e"),
-    @NamedQuery(name = "Employe.findByMatricule", query = "SELECT e FROM Employe e WHERE e.matricule = :matricule"),
-    @NamedQuery(name = "Employe.findByNom", query = "SELECT e FROM Employe e WHERE e.nom = :nom"),
-    @NamedQuery(name = "Employe.findByPoste", query = "SELECT e FROM Employe e WHERE e.poste = :poste")})
+    @NamedQuery(name = "Employe.findAll", query = "SELECT e FROM Employe e")
+    , @NamedQuery(name = "Employe.findByMatricule", query = "SELECT e FROM Employe e WHERE e.matricule = :matricule")
+    , @NamedQuery(name = "Employe.findByNom", query = "SELECT e FROM Employe e WHERE e.nom = :nom")
+    , @NamedQuery(name = "Employe.findByPoste", query = "SELECT e FROM Employe e WHERE e.poste = :poste")})
 public class Employe implements Serializable {
 
     private static final long serialVersionUID = 1L;

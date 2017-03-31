@@ -8,14 +8,14 @@ package tn.ensi.rh.dao;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import tn.ensi.rh.entities.Employe;
+import tn.ensi.rh.entities.Competence;
 
 /**
  *
  * @author user
  */
 @Stateless
-public class EmployeFacade extends AbstractFacade<Employe> {
+public class CompetenceFacade extends AbstractFacade<Competence> {
 
     @PersistenceContext(unitName = "PcdApp2PU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class EmployeFacade extends AbstractFacade<Employe> {
         return em;
     }
 
-    public EmployeFacade() {
-        super(Employe.class);
+    public CompetenceFacade() {
+        super(Competence.class);
     }
     
 }

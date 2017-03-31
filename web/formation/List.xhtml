@@ -22,21 +22,27 @@
                     <h:dataTable value="#{formationController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFormationTitle_idF}"/>
+                                <h:outputText value="#{bundle.ListFormationTitle_formationPK_userId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idF}"/>
+                            <h:outputText value="#{item.formationPK.userId}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFormationTitle_libelleF}"/>
+                                <h:outputText value="#{bundle.ListFormationTitle_formationPK_idF}"/>
                             </f:facet>
-                            <h:outputText value="#{item.libelleF}"/>
+                            <h:outputText value="#{item.formationPK.idF}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFormationTitle_rate}"/>
+                                <h:outputText value="#{bundle.ListFormationTitle_libelle}"/>
                             </f:facet>
-                            <h:outputText value="#{item.rate}"/>
+                            <h:outputText value="#{item.libelle}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFormationTitle_etat}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.etat}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
